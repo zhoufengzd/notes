@@ -8,12 +8,14 @@
 * http://localhost:15672/#/
 
 ## Architecture:
-* producer -> exchange -> queue -> consumer
+* producer -> exchange (postoffice) -> queue (mailbox) -> consumer
 * broker api:
     * declare, publish, deliver, reject
 * exchange: direct where to send message
     * default exchange: exchange=""
-        * routing key = queue name
+    * routing key: rules to decide where to send message, could be
+        * queue name
+        * words (topic exchange)
     * direct exchange: routing key / address
     * topic exchange: a list of words, delimited by a period (.)
     * fanout exchange: to all queues under this exchange

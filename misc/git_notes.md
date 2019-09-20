@@ -1,48 +1,47 @@
 # Git Notes
-* git sync is dangerous!
+* git sync is dangerous! be careful with git publish!
 *   git pull --rebase + git push
 * git help <command>
+
+## basic concept:
+* repository (project): local <> remote (origin)
+* branch: feature branch. like master / develop / feature-x
+* action:
+    * push: local --> remote
+    * fetch: remote
+    * pull / rebase: remote -> local
+    * changes:
+        * add: accept the change
+        * commit: save to local repository
+        * checkout: take the copy from the source
+        * revert local: git reset HEAD~1
+
+## configuration
 ```
-git repository: local repository <-> remote repository
-  origin: remote repo
-  master: default local branch repo is created, most likely "the main branch".
-
-  push: local --> remote
-  fetch: remote
-  pull / rebase: remote -> local
-
-changes:
-  add: accept the change
-  commit: save to local repository (index, HEAD points to the latest change)
-  checkout: take the copy from the source / discard local changes
-
-  revert local: git reset HEAD~1
-```
-
-## create repository
-```
-* create repository in current directory
-git init
-* no working directory, mainly for starting central repository
-git init --bare my-project.git
-* make a local git repository from remote repository.
-git clone username@host:/path/to/repository
-
-* connect to a remote server
-git remote add origin <server url>
-
-* configure git repository or git installation
 git config user.name <name>
 git config --system core.editor <editor>
 ```
 
-## branch
+## repository operation
+* set up central repo: `git init --bare my-project.git`
+* set up local repo in one of the following:
 ```
-* create branch
-git checkout -b <feature_x>
-git branch <DATA-2..>
+git init && git remote add origin <server url|/path/to/repository>
+git clone username@host:/path/to/repository
+```
+* check origin: `git remote show origin`
 
-* switch back to master
+
+## branch operation
+```
+* create branch and set upper branch:
+git checkout -b <feature-x>
+git branch -u origin/develop <feature-x>
+
+* check out feature branch
+git checkout --track origin/<feature-x>
+
+* switch back to master or other branch
 git checkout master
 
 * delete the branch
@@ -50,9 +49,6 @@ git branch -d feature_x
 
 * rename / reuse branch
 git branch -m old_name new_name
-
-* set upstream: -u|--set-upstream-to
-git branch -u origin/develop <feature branch>
 ```
 
 ## changes

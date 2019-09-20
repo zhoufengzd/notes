@@ -1,6 +1,7 @@
 ## Mac Notes
+* special keys: command, control(^), option, shift, function (fn)
 
-### basic setup
+### Basic setup
 ```
 # Sudoer
 sudoer=$USER && sudo sh -c "echo \"$sudoer ALL=(ALL:ALL) NOPASSWD:ALL\""  ## verify first!

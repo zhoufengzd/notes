@@ -281,7 +281,7 @@ begin
 end //
 delimiter ;
 
-set @dag_id='vuln-trend';
+set @dag_id='vuln_trend';
 call clean_dag(@dag_id, 'check', null);
 call clean_dag(@dag_id, 'run', null); -- keep previous succeeded log
 call clean_dag(@dag_id, 'run', 'all'); -- remove all log

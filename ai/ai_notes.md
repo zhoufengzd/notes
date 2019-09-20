@@ -53,6 +53,8 @@
 * Loss: minimizes loss.
     * Mean square error (MSE): Sum( (y - f(x..)) * (y - f(x..)) ) / N (samples)
 
+### Feature Engineering
+
 ### Neural Network
 
 ## Google next

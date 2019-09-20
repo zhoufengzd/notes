@@ -9,15 +9,20 @@
 ## 1. installation
 ### node, npm, webpack
 ```
-brew update && install node
+brew update && install node # npm will be installed with Node
 npm install -g npm@latest   # update to latest
-npm install -g webpack-cli
-npm install -g webpack
+npm i -g webpack-cli
+npm i -g webpack
+npm i -g swagger-cli
 npm i node-config
-npm config list
+npm config ls -l
 npm install -g npm-check-updates    # npm package update
 ncu -a && npm   # update package.json and update all the packages
+
+* list installed
+npm list -g --depth 0
 ```
+
 ### npm
 * use npm publish and npm install to maintain a centralized module registry
 * npm init: generate package.json

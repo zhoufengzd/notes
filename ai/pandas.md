@@ -27,4 +27,12 @@ cities.set_index('san-metro')
 cities.set_index([[1,2,0]])
 cities.reindex(np.random.permutation(cities.index))  ## randomize the order
 cities.describe()
+
+df = pd.read_csv("data.csv")
+df.to_csv("data.csv", sep=",", index=False)
+df.info()
+print(df.describe())
+df.columns
+
+df.head(n)
 ```

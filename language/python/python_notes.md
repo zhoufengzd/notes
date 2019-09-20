@@ -16,42 +16,46 @@
         * scikit-image for image processing
         * scikit-learn for machine learning
 
-## 1. Setup
-### Setup tools
+## set up
+
+#### Check installed pythons
+```
+brew install python
+brew info python
+
+ls -al /usr/bin/python*  ## system python
+ls -al /usr/local/bin/python*   ## All python versions installed via Homebrew
+```
+
+### tools: pip, virtualenv
 * distutils: the standard / older tool for packaging in Python
 * setuptools package
     * command line: easy_install
     * distribute: fork of setuptools. deprecated
 * pip: higher-level interface on top of setuptools or Distribute
 
-### Base setup: pip / virtualenv
-* install python: download packages. optional: installing from sources
-    * installed directory: /Library/Frameworks/Python.framework/Versions/<major>.<minor>
 ```
 apt-get -y install python3-pip
 pip3 install pip
-pip install virtualenv  ## install virtualenv
+pip install virtualenv
 ln -s /Library/Frameworks/Python.framework/Versions/Current/bin/virtualenv virtualenv
-
-# Check
-brew info python
-ls -al /usr/bin/python*  ## system python
-ls -al /usr/local/bin/python*   ## All python versions installed via Homebrew
 ```
 
-### virtualenv:
+### use virtual env:
 * creates bin / include / lib directories, updates PATH
-    * bin: copied pip / python wheel and activate
-    * include: link to /Library/Frameworks/Python.framework/Versions/<major>.<minor>/include
-    * lib: links to /Library/Frameworks/Python.framework/Versions/<major>.<minor>/lib/python<major>.<minor>/*
+* bin: executables
+    * /Library/Frameworks/Python.framework/Versions/<major>.<minor>/bin
+    * <virtual_env>/bin
+* site packages:
+    * /Library/Frameworks/Python.framework/Versions/<major>.<minor>/lib/python<major>.<minor>/site-packages
+    * <virtual_env>/lib/python<major>.<minor>/site-packages/
+    * check: `python -m site --user-site`
 
 ```
-# command
-virtualenv -p /usr/local/bin/python2.7 py27
-virtualenv -p /usr/local/bin/python3.4 py34
-virtualenv -p /usr/local/opt/python3/bin/python3 py3  ## latest python3
-pip install --upgrade pip setuptools
-source py34/bin/activate | deactivate
+* virtualenv
+virtualenv {{ venv }}   ## python 2.7
+python -m venv {{ venv }}   ## python 3.7+
+source {{ venv }}/bin/activate | deactivate
 ```
 
 ### pip
@@ -64,68 +68,26 @@ pip install pipdeptree
 pipdeptree
 ```
 
-### pyenv & pyenv-virtualenv
-```
-brew install pyenv
-brew install pyenv-virtualenv
-
-# List and install python
-pyenv install -l
-pyenv install 3.5.5
-pyenv install 3.6.4
-  # -- install framework build
-PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.6.4
-
-# Prepare pyenv settings
-pyenv_profile="$HOME/.pyenv/pyenv_env"
-pyenv init - > $pyenv_profile
-pyenv virtualenv-init - >> $pyenv_profile
-
-# setup env
-pyenv virtualenv 3.6.5 quant36
-```
-
-### pipenv
-```
-pip install pipenv
-pipenv shell
-```
-
-### ipython / jupyter notebook
-* jupyter = Julia + Python + R
-```*jupyter notebook ```
-
-## 2. Python Working Environment
-* bin: executables
-    * /Library/Frameworks/Python.framework/Versions/<major>.<minor>/bin
-    * <virtual_env>/bin
-* site packages:
-    * /Library/Frameworks/Python.framework/Versions/<major>.<minor>/lib/python<major>.<minor>/site-packages
-    * <virtual_env>/lib/python<major>.<minor>/site-packages/
-    * check: `python -m site --user-site`
-
-### Modules
+## Module and package
 * pure Python modules - modules contained in a single .py file
 * extension modules - modules written in low-level languages like C and have extensions such as .so, .pyd
 * packages - a directory with __init__.py
+    * installing from source: `python setup.py install`
 
-### Install packages
-* Installing Packages from source distributions: `python setup.py install`
-* Installing Packages from PyPI: pip install ...
-
-### Most used packages:
+### common packages:
 * nose: test
-* flask: extensible web microframework
+* flask: web microframework = Werkzeug toolkit (WSGI) + Jinja2
 * marshmallow: serialization
 * jinja: template engine
     * Environment (template locations, etc)
         * Loaders: FileSystemLoader, PackageLoader, and DictLoader.
     * template
+* prometheus: systems monitoring and alerting toolkit.
 
-## 3. Package python code
+### how to package python code?
 * https://code.tutsplus.com/tutorials/how-to-write-your-own-python-packages--cms-26076
 
-### structure
+#### structure
 ```
 code_directory\*.py
 LICENSE
@@ -138,13 +100,11 @@ tests\*.py
 ```
 * MANIFEST.in: include files outside package (code directory)
 
-### distributions
+#### distributions
 * source distribution: python setup.py sdist
 * wheel distribution: python setup.py bdist_wheel
 
-## 4. python libraries
-### flask
-* micro web framework = Werkzeug toolkit (WSGI) + Jinja2
 
-### prometheus
-* open-source systems monitoring and alerting toolkit. originally built at SoundCloud.
+## ipython / jupyter notebook
+* jupyter = Julia + Python + R
+```*jupyter notebook ```
