@@ -8,6 +8,7 @@
 
 ### general:
 * dict, list, set, and tuple
+* collections.OrderedDict()
 
 ### common sequence operations: list, tuple, range
 ```
