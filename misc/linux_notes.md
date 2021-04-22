@@ -1,15 +1,27 @@
 # Linux Notes
 
 ## Basic commands
-    ifconfig | grep "inet " | grep -v "127.0"
-    cat /etc/os-release
-    cat /etc/group
-    cat /etc/passwd
-    Check current shell: `ps -p $$`
-    sudoer=$USER && sudo sh -c "echo \"$sudoer ALL=(ALL:ALL) NOPASSWD:ALL\" > /etc/sudoers.d/$sudoer"
 
-[comment]: # (check ports)
-    netstat -tulpn
+### sudoers
+* set up:
+`sudoer=$USER && sudo sh -c "echo \"$sudoer ALL=(ALL:ALL) NOPASSWD:ALL\" > /etc/sudoers.d/$sudoer"`
+* fix issues: `pkexec nano /etc/sudoers`
+
+### check os / group / user
+```
+cat /etc/os-release
+cat /etc/group
+cat /etc/passwd
+```
+
+### check network
+```
+ifconfig | grep "inet " | grep -v "127.0"
+netstat -tulpn  # ports
+```
+
+### check current shell
+`ps -p $$`    
 
 ## mac os command line
 [comment]: # (reset python default library)
