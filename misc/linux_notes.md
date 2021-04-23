@@ -94,18 +94,28 @@ netstat -tulpn  # ports
     wget https://www.python.org/ftp/python/3.4.2/Python-3.4.2.tgz
 
 
-## ubuntu
-[comment]: # (installation issue with 14.04)
+## ubuntu / mint
+* add / remove user:
+```
+sudo adduser test
+sudo deluser --remove-home test
+```
+* postgres
+```
+sudo usermod -a -G postgres $USER
+```
+* pip and airflow
+```
+cat /etc/os-release
+apt list --installed
+apt-get update && apt-get upgrade
 
-    cat /etc/os-release
-    apt list --installed
-    apt-get update && apt-get upgrade
+apt-get install mlocate && updatedb
 
-    apt-get install mlocate && updatedb
+apt-get -y install python-pip
+apt-get install -y python-dev python-setuptools build-essential libpq-dev
 
-    apt-get -y install python-pip
-    apt-get install -y python-dev python-setuptools build-essential libpq-dev
-
-    pip install  --ignore-installed airflow[jdbc,hdfs,hive,postgres]
-    useradd airflow
-    deluser --remove-home airflow
+pip install  --ignore-installed airflow[jdbc,hdfs,hive,postgres]
+useradd airflow
+deluser --remove-home airflow
+```

@@ -4,15 +4,22 @@
 * config: /usr/share/postgresql
 * data directory: data_directory
 
-## Connect / Reset postgres db / dump db
-    psql -d postgres
-    sudo -u postgres psql
-[comment]: # (reset postgres db)
-    drop database postgres; create database postgres; \c postgres;
-[comment]: # (dump db and restore to newdb)
-    pg_dump -Fc testdb > testdb.dump
-    pg_restore -d newdb testdb.dump
-    pg_dump -s <databasename>
+## Initial Setup
+### Connect
+```
+psql -d postgres
+sudo -u postgres psql
+```
+### Reset postgres db / dump db    
+* reset postgres db
+`drop database postgres; create database postgres; \c postgres;`
+
+### dump db and restore to newdb
+```
+pg_dump -Fc test > test.dump
+pg_restore -d newdb test.dump
+pg_dump -s <databasename>
+```
 
 ## System command
 [comment]: # (Switch database)
@@ -25,7 +32,8 @@
     clear screen
     \! clear
 
-### db info
+## db info
+* list everything
 ```
 \l  # List all databases
 \d  # list all db objects (table, view, etc)
@@ -36,12 +44,12 @@
 \d <table name>
 ```
 
-[comment]: # (settings)
+* settings
 ```
 select * from pg_settings;
 ```
 
-[comment]: # (config)
+* config
 ```
 SHOW ALL;
 SHOW max_connections;
@@ -52,15 +60,17 @@ SHOW config_file;
     \i <external.sql file>
 
 #### Create db, schema, user
-    DROP DATABASE testdb;
-    CREATE DATABASE testdb;
-    CREATE DATABASE change_detn;
-    CREATE SCHEMA name;
-    CREATE USER urlcov WITH PASSWORD '8~JbCxfhOtyO6TQpBUmYSxYR';
-    CREATE USER urlchg WITH PASSWORD 'urlchg';
-    ALTER USER urlchg WITH PASSWORD '8~JbCxfhOtyO6TQpBUmYSxYR';
-    ALTER DATABASE testdb RENAME TO urlcov;
-    ALTER DATABASE changes OWNER TO urlchg;
+```
+DROP DATABASE test;
+CREATE DATABASE test;
+CREATE DATABASE tomato;
+CREATE SCHEMA name;
+CREATE USER tomato WITH PASSWORD 'tomato';
+ALTER USER tomato WITH PASSWORD 'tomato';
+ALTER USER tomato WITH SUPERUSER;
+ALTER DATABASE test RENAME TO test;
+ALTER DATABASE test OWNER TO tomato;
+```
 
 [comment]: # (create extension)
     CREATE EXTENSION ltree; CREATE EXTENSION hstore;
