@@ -170,6 +170,7 @@ psql -w -h 127.0.0.1 -U postgres urlcov
 gsutil ls
 gsutil ls gs://
 gsutil du -s gs://
+gsutil cat gs://...
 
 # (permissions)
 gsutil -m acl ch -r -u <user or role>:R gs://<artifacts.your-project.appspot.com>
