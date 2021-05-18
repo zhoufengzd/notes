@@ -40,3 +40,9 @@ try:
 except (ValueError, IndexError) as e:
     ...
 ```
+
+
+## python one liner:
+```
+
+```

@@ -1,4 +1,5 @@
 # numpy notes
+* highly optimized package to manipulate numeric arrays
 * http://cs231n.github.io/python-numpy-tutorial/
 
 ## np array

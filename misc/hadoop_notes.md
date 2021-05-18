@@ -1,47 +1,53 @@
-# ----------------------------------------------
-#  Hadoop notes.
-#    HDFS + MapReduce
-# ----------------------------------------------
+# Hadoop: HDFS + MapReduce
+* fault tolerance
+* reliability
+* scalability
+* high availability
 
-## Distributed Storage:
-# ----------------------------------------------
-S3 – Non urgent batch jobs. S3 fits very specific use cases, when data locality isn’t critical.
-Cassandra – Perfect for streaming data analysis and an overkill for batch jobs.
-HDFS – Great fit for batch jobs without compromising on data locality.
+## Overview distributed storage:
+* S3 – Non urgent batch jobs. S3 fits very specific use cases, when data locality is not critical.
+* Cassandra – Perfect for streaming data analysis and an overkill for batch jobs.
+* HDFS – Great fit for batch jobs without compromising on data locality.
 
+## Hadoop vs RDBMS
+* usage: OLTP <-> Analytics
+* schema:
+    * rdbms: required on write (static)
+    * hadoop: required on reading (dynamic)
+* fast write / slow read <-> fast read
+* cost: low <-> high
 
 ## HDFS
-# ----------------------------------------------
+* Datanode: where data is stored
+* Namenode: the ‘master’ machine.
 
-Datanode - where HDFS actually stores the data, there are usually quite a few of these.
-Namenode - the ‘master’ machine. 
-
-# ist files in the root directory
+## Commands:
+* list files in the root directory
+```
 hadoop fs -ls /
 hadoop fs -ls ./
-
-# cat a file (decompressing if needed)
-hadoop fs -text ./file.txt.gz #
-
-# upload and retrieve a file
+```
+* cat a file (decompressing if needed)
+`hadoop fs -text ./file.txt.gz`
+* upload and retrieve a file
+```
 hadoop fs -put ./localfile.txt /home/matthew/remotefile.txt
 hadoop fs -get /home/matthew/remotefile.txt ./local/file/path/file.txt
-
+```
 
 ## MapReduce
-# ----------------------------------------------
-
-Map tasks perform a transformation.
-Reduce tasks perform an aggregation.
-
-# Example:
+* Map tasks perform a transformation.
+* Reduce tasks perform an aggregation.
+* example:
+```
 def map(lineNumber: Long, sentance: String) = {
   val words = sentance.split()
   words.foreach{word =>
     output(word, 1)
   }
 }
-
+```
+```
 def reduce(word: String, counts: Iterable[Long]) = {
   var total = 0l
   counts.foreach{count =>
@@ -49,31 +55,28 @@ def reduce(word: String, counts: Iterable[Long]) = {
   }
   output(word, total)
 }
--- Notice that the output to a map and reduce task is always a KEY, VALUE pair. 
+```
 
-# Scheduler: Job Tracker (JT) and the Task Tracker (TT). 
 
+## Scheduler: Job Tracker (JT) and the Task Tracker (TT).
 
 ## Hadoop Architecture
-  Hadoop Common: These are Java libraries and utilities required by other Hadoop modules. 
-  Hadoop YARN: This is a framework for job scheduling and cluster resource management.
-  Hadoop Distributed File System (HDFS™): A distributed file system that provides high-throughput access to application data.
-  Hadoop MapReduce: This is YARN-based system for parallel processing of large data sets.
+* Hadoop Common: Java utilities libraries
+* Hadoop YARN: for job scheduling and cluster resource management.
+* Hadoop Distributed File System (HDFS™): A distributed file system
+* Hadoop MapReduce: YARN-based parallel processing system
 
+## Hadoop in docker
+* single node: sequenceiq/hadoop-docker
+* multiple nodes:
+`git clone git@github.com:big-data-europe/docker-hadoop.git`
 
-## Pig
-# ----------------------------------------------
+## Extensions
+### Pig
+* High-level platform to interact with Apache Hadoop.
+* User Defined Functions (UDFs) supported
 
-
-High-level platform for creating programs that run on Apache Hadoop. 
-Pig Latin can be extended using User Defined Functions (UDFs) which the user can write in Java, Python, JavaScript, Ruby or Groovy.
-
-~/tmp
-also check /data directory
-pig -v -x local -f llayer_test.pig
-
-## HBase
-# ----------------------------------------------
-
-Being a FS, HDFS lacks the random read/write capability. 
-HBase is a NoSQL database that runs on top of Hadoop cluster and provides random real-time read/write access.
+### HBase
+* context: HDFS lacks the random read/write capability.
+* NoSQL database on Hadoop
+* support random real-time read/write access.
