@@ -1,4 +1,12 @@
 # System Design
+* goal / target / core features
+* scale:
+    * bottleneck
+* priority:
+    * delivery time
+    * reliability
+    * cost
+* assumptions:
 
 ## Load-balancing
 * tolerance vs complexity setup
@@ -26,4 +34,12 @@
     * Foreign Data Wrapper (FDW)
     * Sharding on top of the partition
 
+## Geo Partition
+* R-tree (rectangle tree)
+    * The key challenge: balanced, not too empty, minimum overlap
+* index of longitude / latitude
+
 ## API Design
+
+## references:
+* https://igotanoffer.com/blogs/tech/system-design-interviews

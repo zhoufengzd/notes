@@ -54,6 +54,7 @@ node test.js
 * references:
     * Eloquent JavaScript
     * https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc
+    * https://developers.google.com/web/tools/puppeteer/examples
 * values: generic object, could be values or functions or anything
 * bindings: variable that was assigned to a value
 * higher-order functions: function as parameter or return value
