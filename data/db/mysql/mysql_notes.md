@@ -15,11 +15,15 @@ mysql -h 127.0.0.1 --port 3306 -u airflow -p airflow
 
 ## security
 ```
-alter user 'root'@'localhost' identified by 'jageRmB2';
-create user 'fzhou';
-create user webapp@server1 identified by 'apple';
-grant all privileges on *.* to 'fzhou';
-select user();
+grant select on *.* to '<user>'@'%' identified by '<default_pwd>';
+grant all privileges on *.* to airflow identified by 'pwd';
+set password='blabla'; -- change own password
+
+create user <user> identified by '<default_pwd>';
+grant all privileges on *.* to '<user>';
+select user(); -- check current logon user
+
+select host, user from mysql.user;
 ```
 
 ### ddl
