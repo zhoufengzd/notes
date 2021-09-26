@@ -77,7 +77,7 @@ git stash
 git stash drop
 
 * diff
-git diff <source_branch> <target_branch>
+git diff [<source_branch> <target_branch>]
 
 * tagging
 git tag 1.0.0 <1b2e1d63ff: first 10 characters of the commit id>

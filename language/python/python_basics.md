@@ -23,9 +23,13 @@ s.count(x)
 
 ## function decorators
 
-## Lambda expressions:
+### Lambda expressions:
 * single line, anonymous functions
 * could be more readable and concise code
+
+
+## data
+* Dataclasses vs Attrs vs Pydantic
 
 ## misc
 

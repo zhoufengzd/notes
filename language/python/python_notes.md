@@ -68,6 +68,13 @@ pip install pipdeptree
 pipdeptree
 ```
 
+### json / http tool
+```
+python -m json.tool <example.json>
+python -m http.server 8000
+python -m pdb xxx.py
+```
+
 ## Module and package
 * pure Python modules - modules contained in a single .py file
 * extension modules - modules written in low-level languages like C and have extensions such as .so, .pyd

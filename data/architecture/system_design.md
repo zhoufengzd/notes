@@ -1,7 +1,10 @@
-# System Design
+# System Design for data systems
 * goal / target / core features
+* reliability
 * scale:
-    * bottleneck
+    * load
+    * latency and response time
+    * percentile / head-of-line blocking
 * priority:
     * delivery time
     * reliability
@@ -22,9 +25,9 @@
 
 ## Database schema Design
 
-## Slave-master replications
+### Slave-master replications
 
-## Database sharding
+### Database sharding
 * on multiple / remote servers
 * reason:
     * to scale out (horizontally)
@@ -34,12 +37,19 @@
     * Foreign Data Wrapper (FDW)
     * Sharding on top of the partition
 
-## Geo Partition
+### Geo Partition
 * R-tree (rectangle tree)
     * The key challenge: balanced, not too empty, minimum overlap
 * index of longitude / latitude
 
 ## API Design
+
+### Microservice:
+* Domain Driven Design (DDD)
+    * Entities, Value Objects and Aggregates
+* transaction boundary: smallest unit of atomicity
+* modular / independent
+* reference: https://www.infoq.com/articles/managing-data-microservices/
 
 ## references:
 * https://igotanoffer.com/blogs/tech/system-design-interviews

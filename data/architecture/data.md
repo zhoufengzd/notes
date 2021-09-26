@@ -11,6 +11,17 @@
 * same tech stack for both streaming and batch
 * streaming -> kafka -> process
 
+## lambda Architecture:
+* prepare the data before queries
+* batch:
+    * Batch Layer: T0, T1,.., Tn-1, Tn
+    * Tools: hadoop
+    * Server layer: indexing / fix coding error
+* streaming:
+    * Speed layer: only latest data Tn-1, Tn.
+    * Tools: Apache storm, Spark
+* query: consume the data from batch or streaming
+
 ## Edge Computing
 * Computing at the “edge” of a network
 * trimming fat at the source

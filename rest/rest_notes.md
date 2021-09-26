@@ -14,6 +14,20 @@
 * PATCH: make partial update on a resource. 200 (OK) or 204 (No Content), 404 (Not Found)
 * -- Summary: 'POST', 'PUT', 'PATCH', 'DELETE' are considered submit methods.
 
+## redirection
+* 301: permanent redirect. Url moved
+* 302: temporary redirect. Not common
+* meta refresh: client side, timed refresh.
+
+## load balancing
+* scalability, high availability, maintainability, security
+
+### algorithms
+* round robin
+* least connections
+* least response time
+* hash / ip hash
+
 ### references
 * https://realpython.com/python-ruby-and-golang-a-web-service-application-comparison/#martini-golang
 * https://blog.usejournal.com/top-6-web-frameworks-for-go-as-of-2017-23270e059c4b

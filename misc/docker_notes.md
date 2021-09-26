@@ -9,8 +9,12 @@
 * pull base alpine linux image
 `docker pull frolvlad/alpine-glibc`
 
+* build
+`docker build - < docker_file`
+`docker build -t helloapp:v1`
+
 * docker clean leftover containers
-`docker rm -v $(docker ps -a -q -f status=exited`
+`docker rm -v $(docker ps -a -q -f status=exited)`
 
 * delete all images
 `docker rmi -f <image id or image name>`
@@ -33,7 +37,7 @@
 * docker command
 ```
 docker run -i -t alpine:latest /bin/sh
-docker rm -f CONTAINER_ID   # force stop and clean up container          
+docker rm -f CONTAINER_ID   # force stop and clean up container
 docker ps   # list running container
 docker exec -it <container id> /bin/bash  # start a new shell
 ```
@@ -46,3 +50,19 @@ docker network rm nkk
 ```
 
 * exit container: `exit`
+
+
+## Dockerfile: docker build...
+* build context: current working directory
+* RUN, COPY, ADD create layers.
+
+### instructions
+* RUN
+* CMD
+* EXPOSE: port
+* ENV: environment variables
+* ADD / COPY: prefer COPY
+* ENTRYPOINT
+* VOLUME: mutable and/or user-serviceable parts of image.
+* USER
+* WORKDIR

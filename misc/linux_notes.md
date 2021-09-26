@@ -21,7 +21,7 @@ netstat -tulpn  # ports
 ```
 
 ### check current shell
-`ps -p $$`    
+`ps -p $$`
 
 ## mac os command line
 [comment]: # (reset python default library)
@@ -36,7 +36,7 @@ netstat -tulpn  # ports
     apk update
     apk upgrade --available
 
-    apk -vv info|sort
+    apk -v info|sort
     apk cache clean
 
     apk add openssh openntp vim
@@ -47,7 +47,7 @@ netstat -tulpn  # ports
 
     apk info -a zlib  # list installed
 
-[comment]: # (docker container)    
+[comment]: # (docker container)
     apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community add dumb-init
 
 [comment]: # (postgres)
@@ -55,7 +55,7 @@ netstat -tulpn  # ports
     su - svc -c "postgresql"
 
 ### debian linux
-    dpkg-query -l  
+    dpkg-query -l
     apt list --installed
     apt-get update -yqq && apt-get install nano
     apt-get update && apt-get upgrade
