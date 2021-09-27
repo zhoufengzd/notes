@@ -5,7 +5,7 @@
 ```
 # Sudoer
 sudoer=$USER && sudo sh -c "echo \"$sudoer ALL=(ALL:ALL) NOPASSWD:ALL\""  ## verify first!
-sudoer=$USER && sudo sh -c "echo \"$sudoer ALL=(ALL:ALL) NOPASSWD:ALL\" > /private/etc/sudoers.d/$sudoer"
+sudoer=$USER && sudo sh -c "echo \"$sudoer ALL=(ALL:ALL) NOPASSWD:ALL\" > /private/etc/sudoers.d/me"
 
 # Service account
 sudo dscl . -create /Users/svc
@@ -86,9 +86,16 @@ Command + SHIFT + 4: screen shot selected area
 ```
 
 ### Show desktop
-    FN + F11
-
+`FN + F11`
 
 ### IntelliJ
-    Command + F12: view class outline
-    Command + SHIFT + -: collapse definitions
+```
+Command + F12: view class outline
+Command + SHIFT + -: collapse definitions
+```
+
+### Visual Studio Code
+```
+Command + k  then Command + S: show all the shortcuts
+Command + k
+```
