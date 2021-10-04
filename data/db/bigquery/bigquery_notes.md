@@ -29,3 +29,13 @@ as
     select *
         from ...
 ```
+
+## table size:
+```
+with dt as (
+    select table_id, sum(size_bytes)/(1024*1024) as size_MB
+        from `${dataset_name}.__TABLES__`
+            group by table_id
+)
+select * from dt order by size_MB desc;
+```

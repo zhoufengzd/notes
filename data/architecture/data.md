@@ -7,6 +7,15 @@
 * OLTP: Online Transaction Processing (integrity)
 * OLAP: Online Analytic Processing
 
+### Change-Data-Capture (CDC)
+* DB binlog => Kafka => BigQuery / RedShift
+* Use db read replica
+* Benefit:
+    * Maintain application performance
+    * Analyze historical data / Track delete as well
+    * Faster analytics.
+    * Scalability
+
 ## Kappa Architecture:
 * same tech stack for both streaming and batch
 * streaming -> kafka -> process

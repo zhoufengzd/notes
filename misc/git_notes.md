@@ -20,6 +20,11 @@
 ```
 git config user.name <name>
 git config --system core.editor <editor>
+
+* default config
+git config --global pull.rebase true
+git config --global fetch.prune true
+git config --global diff.colorMoved zebra
 ```
 
 ## repository operation
