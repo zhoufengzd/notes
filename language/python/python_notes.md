@@ -34,13 +34,6 @@ ls -al /usr/local/bin/python*   ## All python versions installed via Homebrew
     * distribute: fork of setuptools. deprecated
 * pip: higher-level interface on top of setuptools or Distribute
 
-```
-apt-get -y install python3-pip
-pip3 install pip
-pip install virtualenv
-ln -s /Library/Frameworks/Python.framework/Versions/Current/bin/virtualenv virtualenv
-```
-
 ### use virtual env:
 * creates bin / include / lib directories, updates PATH
 * bin: executables
@@ -53,7 +46,7 @@ ln -s /Library/Frameworks/Python.framework/Versions/Current/bin/virtualenv virtu
 
 ```
 * virtualenv
-virtualenv {{ venv }}   ## python 2.7
+pip install virtualenv && virtualenv {{ venv }}   ## python 2.7
 python -m venv {{ venv }}   ## python 3.7+
 source {{ venv }}/bin/activate | deactivate
 ```
@@ -66,6 +59,13 @@ pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install --u
 * check package dependencies
 pip install pipdeptree
 pipdeptree
+```
+
+### conda
+```
+brew install --cask miniconda
+conda env list
+conda activate base
 ```
 
 ### json / http tool

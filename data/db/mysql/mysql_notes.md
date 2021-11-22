@@ -69,19 +69,16 @@ show processlist;
 * db and table size
 ```
 select table_schema as db_name,
-        round(sum(data_length + index_length) / 1024 / 1024, 1) size_mb
+        round(sum(data_length + index_length) / 1048576, 1) size_mb
     from information_schema.tables
+        where (1=1)
+            and table_schema not in ('information_schema', 'mysql', 'performance_schema', 'sys')
         group by table_schema;
 
-select *
-    from (
-            select concat(table_schema, '.', table_name) as table_name,
-                    round(sum(data_length + index_length) / 1024 / 1024, 1) size_mb
-                from information_schema.tables
-                    group by concat(table_schema, '.', table_name)
-        ) size_summary
-        order by size_mb desc
-    limit 10;
+select table_schema as db_name, table_name, round((data_length + index_length) / 1048576, 3) size_mb, table_rows, update_time
+    from information_schema.tables
+        where table_schema not in ('information_schema', 'mysql', 'performance_schema', 'sys')
+    order by table_schema, table_name;
 ```
 
 * table ddl
@@ -93,6 +90,7 @@ drop table tablename;
 ```
 select table_schema as db_name, table_name, column_name, data_type
     from information_schema.columns
+        where table_schema not in ('information_schema', 'mysql', 'performance_schema', 'sys')
         order by table_schema, table_name, column_name;
 ```
 

@@ -51,3 +51,15 @@ callRunner(CommandLineRunner runner)
 
 ### HikariCP
 * light weight / fast jdbc connection pool
+
+### Domain Driven Design (DDD)
+* Class matches the business domain. Business first.
+* Value Object: value matters, identity not.
+* Entity: identifiable object
+* Repository: read ojects from data store
+* Factory: create domain objects
+* Event sourcing: entity read / write to event store
+* transactional boundaries
+
+### CQRS
+* :

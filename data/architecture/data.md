@@ -1,5 +1,7 @@
 # Data Notes
-* Data lake: store everything, even those not well defined.
+* Data lake:
+    * store everything, even those not well defined.
+    * allow early access
 * Data warehouses: column storage solutions
 * Kappa Architecture: streaming -> kafka -> process
 

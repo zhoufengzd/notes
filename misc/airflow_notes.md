@@ -10,13 +10,25 @@
 
 ## command line
 ```
--- resetdb, initdb, upgradedb
+-- db reset / initdb / upgrade
 -- pause, unpause
 -- list_dags, list_tasks, task_state, dag_state
 -- test, run, trigger_dag, backfill, clear
 airflow list_dags
 airflow unpause <dag_id>
 airflow pause <dag_id>
+```
+
+## dag structure
+```
+dag
+  |__ analytics
+        |__ dag_x.yml, dag_y.yml
+  |__ sql
+        |__ init
+        |__ views
+        |__ step1.sql, ..., stepN.sql
+  |__ driver.py: build dags
 ```
 
 ## Dags
