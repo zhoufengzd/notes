@@ -242,9 +242,14 @@ kubectl delete deployment airflow
 
 kubectl proxy  # Starting to serve on 127.0.0.1:8001
 ```
+
 ### Compute Engine
+```
+* copy files from ... to ...
+gcloud compute scp --project="{GCP_PROJECT}" --zone="{vm_zone}" {file_dir}/*.sql {vm}:~/
+```
 
 ### App Engine
 ```
-gcloud app --project <gcp_project> instances enable-debug
+gcloud app --project <GCP_PROJECT> instances enable-debug
 ```

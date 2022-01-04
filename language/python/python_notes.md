@@ -66,6 +66,7 @@ pipdeptree
 brew install --cask miniconda
 conda env list
 conda activate base
+conda deactivate
 ```
 
 ### json / http tool

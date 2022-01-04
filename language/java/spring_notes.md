@@ -49,6 +49,9 @@ callRunner(CommandLineRunner runner)
 
 ## other
 
+## annotations
+* @Autowired
+
 ### HikariCP
 * light weight / fast jdbc connection pool
 

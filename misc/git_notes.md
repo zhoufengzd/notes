@@ -49,6 +49,9 @@ git checkout --track origin/<feature-x>
 * switch back to master or other branch
 git checkout master
 
+* check out a commit in current branch
+git checkout tags/<tag>
+
 * delete the branch
 git branch -d feature_x
 
@@ -85,8 +88,12 @@ git stash drop
 git diff [<source_branch> <target_branch>]
 
 * tagging
-git tag 1.0.0 <1b2e1d63ff: first 10 characters of the commit id>
-
+git tag <tag_name> <1b2e1d63ff: first 10 characters of the commit id>
+** remove tag
+git tag -d <tag_name>
+git push origin :refs/tags/<tag_name>
+-- remove remote tag in current branch
+git push --delete origin <tag>
 
 * check changes
 git log --author=bob

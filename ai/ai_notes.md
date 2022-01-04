@@ -110,3 +110,6 @@
     * Pick the right problems
 * Caching Made Easy, with Cloud Memorystore
     * OpenCensus
+
+## TinyML
+* https://hackaday.io/courses
