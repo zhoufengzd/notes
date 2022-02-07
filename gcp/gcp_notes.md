@@ -196,7 +196,7 @@ gsutil rm gs://analytic-staging/urlsummary/temp/**
 ```
 gcloud components install kubectl
 # (create container)
-gcloud container clusters create <airflow-cluster>
+gcloud container clusters create <airflow-cluster> --region us-west2 --zone us-west2-a
 gcloud container clusters delete <cluster-test>
 gcloud container clusters list
 

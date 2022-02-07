@@ -14,3 +14,7 @@
 
 ## org.mapstruct.Mapper
 *
+
+## io.vertx
+* Reactive
+* Event Bus:

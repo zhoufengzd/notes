@@ -1,5 +1,9 @@
 # Spring framework notes
 
+## MC
+* @RestController:
+    * e.g., `@GetMapping("/greeting")`
+
 ## Spring Configuration
 * configuration value class: decorated with @ConfigurationProperties
 * configuration file: resources/application.yml
@@ -19,6 +23,31 @@
 * The InitializingBean Interface
 * Init attribute of @bean annotation
 
+#### Bean construction
+```
+getSubscriptionConfig()
+...
+getExistingIfPossible()
+...
+bindObject()
+bind()
+...
+postProcessBeforeInitialization()
+applyBeanPostProcessorsBeforeInitialization()
+initializeBean()
+doCreateBean()
+createBean()
+...
+doGetBean()
+getBean()
+preInstantiateSingletons()
+finishBeanFactoryInitialization()
+...
+refreshContext()
+run()
+main()
+```
+
 ### event sequence
 * Constructor
 * PostContruct method
@@ -28,7 +57,7 @@
 * ApplicationRunner Or CommandLineRunner depends on Order
 * ApplicationReadyEvent
 
-### call stack
+### Run call stack
 ```
 public class SpringApplication {
 }
@@ -47,10 +76,40 @@ CommandLineRunner::run(...)
 callRunner(CommandLineRunner runner)
 ```
 
+### Event dispatch call stack
+```
+invokeForRequest()
+...
+doDispatch()
+doService()
+processRequest()
+doPost()
+...
+doFilter()
+invoke()
+service()
+process()
+doRun()
+runWorker()
+run()
+```
+
+* axon server consume messages
+```
+consume()
+onNext()
+onMessage()
+messagesAvailable()
+runInContext()
+runWorker()
+run()
+```
+
 ## other
 
 ## annotations
 * @Autowired
+    * property: auto provides setter and getter
 
 ### HikariCP
 * light weight / fast jdbc connection pool

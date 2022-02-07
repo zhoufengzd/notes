@@ -90,10 +90,11 @@ git diff [<source_branch> <target_branch>]
 * tagging
 git tag <tag_name> <1b2e1d63ff: first 10 characters of the commit id>
 ** remove tag
-git tag -d <tag_name>
-git push origin :refs/tags/<tag_name>
 -- remove remote tag in current branch
 git push --delete origin <tag>
+-- remove local tag
+git tag -d <tag_name>
+git push origin :refs/tags/<tag_name>
 
 * check changes
 git log --author=bob

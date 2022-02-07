@@ -22,7 +22,7 @@
 * default: service discovery + load balance
 
 ## Kubernetes node
-* also known as Worker or Minion.  
+* also known as Worker or Minion.
 * the single machine (or virtual machine) where containers(workloads) are deployed
 * by default, running the following:
 ```
@@ -36,6 +36,10 @@
     gcr.io/google_containers/addon-resizer
     gcr.io/google_containers/pause-amd64
 ```
+
+## Context vs Namespace
+* context: client side configuration = cluster + user + namespace
+* namespace: logical grouping of Kubernetes objects on server side
 
 ## Kubelet
 * pod monitors. restarts the pod
@@ -52,3 +56,17 @@
     * older mode: userspace. uses round-robin load distribution.
 * ingress: http / https traffic. rules defined in ingress resource.
 * loadBalancer: tcp.
+
+## Tools
+* minikube start / stop / check dashboard
+```
+minikube start
+minikube stop
+minikube dashboard
+```
+
+* config / check
+```
+kubectl config view
+minikube addons list
+```

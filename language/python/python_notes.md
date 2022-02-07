@@ -62,11 +62,18 @@ pipdeptree
 ```
 
 ### conda
+* a command line tool, and a python package.
+* miniconda = python + conda
+* anaconda  = python + conda + meta package anaconda
 ```
 brew install --cask miniconda
 conda env list
 conda activate base
 conda deactivate
+
+conda env create --name {{env}} --file={{env}}.yml
+conda activate {{env}}
+conda env update --file {{env}}.yml --prune
 ```
 
 ### json / http tool

@@ -64,3 +64,8 @@ names.replaceAll(name -> name.toUpperCase());
 * All properties are private (use getters/setters)
 * A public no-argument constructor
 * Implements Serializable.
+
+## Reflection
+* JUnit: @Test
+* Spring
+* Tomcat:
