@@ -1,14 +1,18 @@
 # Spring framework notes
 
-## MC
-* @RestController:
-    * e.g., `@GetMapping("/greeting")`
+## IOC: BeanFactory + ApplicationContext (container)
+* @Bean / @Autowired
+    * Bean: singleton
 
-## Spring Configuration
-* configuration value class: decorated with @ConfigurationProperties
-* configuration file: resources/application.yml
 
 ## SpringApplication
+
+### Spring Configuration
+* configuration value class: decorated with @ConfigurationProperties
+* configuration file: resources/application.yml
+* configuration: @Component,@Controller,@service @Repository and @Bean
+
+### To Start:
 * Create an appropriate ApplicationContext instance
 * Register a CommandLinePropertySource to expose command line arguments
 * Refresh the application context, loading all singleton beans
@@ -24,6 +28,7 @@
 * Init attribute of @bean annotation
 
 #### Bean construction
+* annotation in spring framework: "@Component"
 ```
 getSubscriptionConfig()
 ...
@@ -40,7 +45,7 @@ createBean()
 ...
 doGetBean()
 getBean()
-preInstantiateSingletons()
+preInstantiateSingletons() // all non-lazy singleton beans
 finishBeanFactoryInitialization()
 ...
 refreshContext()
@@ -76,7 +81,11 @@ CommandLineRunner::run(...)
 callRunner(CommandLineRunner runner)
 ```
 
-### Event dispatch call stack
+### Spring Integration
+* Channel Adapters for Google Cloud Pub/Sub
+* https://docs.spring.io/spring-cloud-gcp/docs/1.0.0.RELEASE/reference/html/_spring_integration.html
+
+* Event dispatch call stack
 ```
 invokeForRequest()
 ...
@@ -107,9 +116,9 @@ run()
 
 ## other
 
-## annotations
-* @Autowired
-    * property: auto provides setter and getter
+### MC
+* @RestController:
+    * e.g., `@GetMapping("/greeting")`
 
 ### HikariCP
 * light weight / fast jdbc connection pool
@@ -124,4 +133,18 @@ run()
 * transactional boundaries
 
 ### CQRS
-* :
+* Command => Domain => Events
+* Command: One handler per command
+* Event: changes have happened / after change
+    * domain / public event: shared to external
+    * event sourcing event: internal to the domain
+* Event Sourcing: event log
+* Aggregate: collection of entities with root (id), handle commands
+    * decoration: @Aggregate, @CommandHandler
+    * command => event
+* Projection
+    * save: Repository.save(...), map(...Repository::save)
+* Query
+    * read => entity
+* Sagas
+* ref: https://sderosiaux.medium.com/cqrs-what-why-how-945543482313

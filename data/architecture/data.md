@@ -2,7 +2,14 @@
 * Data lake:
     * store everything, even those not well defined.
     * allow early access
-* Data warehouses: column storage solutions
+* Data warehouses:
+    * structured or semi-structured (primarily JSON format) data
+* Data Mesh:
+    * data as product (data consumer: sales, marketing, strategic partners)
+    * domain-oriented decentralized data owner
+        * multiple contextualized versions of the truth
+    * self-serve data infrastructure platform
+    * Federated computational governance
 * Kappa Architecture: streaming -> kafka -> process
 
 ## OLTP vs OLAP

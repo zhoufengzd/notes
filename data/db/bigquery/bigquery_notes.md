@@ -78,3 +78,17 @@ begin
     end loop;
 end;
 ```
+
+## connection
+```
+bq ls --connection --project_id=clearlabs-quality --location=us
+bq rm --connection --project_id=clearlabs-quality --location=us clearview
+
+## TODO: fill username, password for mysql
+bq mk --connection --display_name='clearview' \
+    --connection_type='CLOUD_SQL' \
+    --properties='{"instanceId":"clearlabs-quality:us-west2:clearview-replica","database":"information_schema","type":"MYSQL"}'  \
+    --connection_credential='{"username":"", "password":""}' \
+    --project_id=clearlabs-quality --location="us" \
+    clearview
+```
