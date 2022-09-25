@@ -148,24 +148,37 @@ SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;
 ```
 # unix sockets
 cloud_sql_proxy -dir=$HOME/tmp/cloudsql -instances=<gcp_project>:us-central1:<db_host>
-cloud_sql_proxy -dir=$HOME/tmp/cloudsql -instances=<gcp_project>:us-central1:url-cov-test
 
 # tcp sockets: preferred if using saved password
-cloud_sql_proxy -instances=<gcp_project>:us-central1:<db_host>=tcp:5432
-cloud_sql_proxy -instances=<gcp_project>:us-central1:urlcoverage=tcp:5432
+cloud_sql_proxy -instances=<gcp_project>:<gcp_region>:<db_host>=tcp:5432
 
 # client
-gcloud sql connect urlcoverage --user=postgres
 gcloud sql connect <db_host> --user=postgres
 
 # unix socket client
-psql "sslmode=disable host=$HOME/tmp/cloudsql/<gcp_project>:us-central1:<db_host> dbname=urlcov user=postgres "
+psql "sslmode=disable host=$HOME/tmp/cloudsql/<gcp_project>:<gcp_region>:<db_host> dbname=<db> user=postgres "
 
 # tcp socket client
 ## PGPASSFILE="~/.pgpass"
-psql -w -h 127.0.0.1 -U postgres urlcov
+psql -w -h 127.0.0.1 -U postgres db
 ```
+#### Federated Connection
+```
+con_name=""
+bq ls --connection --project_id=<gcp_project> --location=us
+bq rm --connection --project_id=<gcp_project> --location=us $con_name
+
+bq mk --connection --display_name="$con_name" \
+    --connection_type='CLOUD_SQL' \
+    --properties='{"instanceId":"","database":"information_schema","type":"MYSQL"}'  \
+    --connection_credential='{"username":"", "password":""}' \
+    --project_id=<gcp_project> --location="us" \
+    $con_name
+```
+
+
 ### Storage
+* Note: update crcmod for better performance `pip install -U crcmod`
 ```
 gsutil ls
 gsutil ls gs://
@@ -252,4 +265,43 @@ gcloud compute scp --project="{GCP_PROJECT}" --zone="{vm_zone}" {file_dir}/*.sql
 ### App Engine
 ```
 gcloud app --project <GCP_PROJECT> instances enable-debug
+```
+
+### Cloud Function
+* code: index.js
+```
+exports.processFile = (file) => {
+  return Promise.resolve()
+    .then(() => {
+      console.log("file.name: " + file.name + ", bucket: " + file.bucket);
+      ...;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+```
+
+* deploy
+```
+gcloud functions deploy <cloud_function_name> \
+    --runtime nodejs16 \
+    --trigger-resource gs://$gs_bucket \
+    --trigger-event google.storage.object.finalize
+```
+
+### Cloud Run
+* code:
+```
+@app.route("/", methods=["POST"])
+def index():
+    """ entry point for pubsub invoker """
+    envelope = request.get_json()
+    pubsub_message = envelope["message"]
+
+    try:
+        request = base64.b64decode(pubsub_message["data"]).decode("utf-8")
+    except Exception as e:
+        logging.error(str(e))
+        return ("bad request...", 400)
 ```

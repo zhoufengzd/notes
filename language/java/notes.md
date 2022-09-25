@@ -40,6 +40,9 @@
 
 ## Misc notes
 
+### gradle
+*
+
 ### "== vs equals"
 * "==" checks type and never throws NullPointerException
 * "equals" checks the underline object

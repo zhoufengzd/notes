@@ -55,14 +55,20 @@ docker network rm nkk
 ## Dockerfile: docker build...
 * build context: current working directory
 * RUN, COPY, ADD create layers.
+* Note: may need to clean docker cache before build `docker system prune`
 
 ### instructions
-* RUN
-* CMD
-* EXPOSE: port
 * ENV: environment variables
+* ARG: temporary env variables
+
+* RUN: run command during build
 * ADD / COPY: prefer COPY
-* ENTRYPOINT
+
 * VOLUME: mutable and/or user-serviceable parts of image.
+* EXPOSE: port
+
 * USER
 * WORKDIR
+
+* ENTRYPOINT: always run when docker starts
+* CMD: default to run if no cmd argument is passed

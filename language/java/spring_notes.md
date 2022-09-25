@@ -8,6 +8,7 @@
 ## SpringApplication
 
 ### Spring Configuration
+* @SpringBootApplication => enabled: @Configuration, @EnableAutoConfiguration, @ComponentScan
 * configuration value class: decorated with @ConfigurationProperties
 * configuration file: resources/application.yml
 * configuration: @Component,@Controller,@service @Repository and @Bean

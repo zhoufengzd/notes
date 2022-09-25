@@ -7,7 +7,7 @@
     * ES3: 1999
 
 ## 1. installation
-### node, npm, webpack
+### node, npm, nvm, webpack
 ```
 brew update && install node # npm will be installed with Node
 npm install -g npm@latest   # update to latest
@@ -31,6 +31,12 @@ npm list -g --depth 0
     * var <pkg> = require('<package>')
     * var <local_packge> = require("./<path_to_local_packge>")
 * npm publish
+
+### nvm
+```
+nvm use system
+npm uninstall -g a_module
+```
 
 ### Node.js
 * EventEmitter: observer pattern
