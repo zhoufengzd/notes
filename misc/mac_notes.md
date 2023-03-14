@@ -24,7 +24,7 @@ sudo chown -R svc /var/svc
 ### packages
 * check system packages: `pkgutil --pkgs`
 * install brew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-    * `brew update && brew upgrade && brew tap caskroom/cask`
+    * `brew update && brew upgrade && brew tap homebrew/cask`
 * services / tools:
     * core: `bash`
         * Update shell preferences -> General -> Command: /usr/local/bin/bash
